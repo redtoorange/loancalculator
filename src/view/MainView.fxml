@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+           prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.MainViewController">
+    <children>
+        <TabPane prefHeight="635.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Loan Calculator">
+                    <content>
+                        <AnchorPane fx:id="loanPane">
+                            <children>
+                                <VBox alignment="CENTER" maxHeight="571.0" prefHeight="287.0" prefWidth="155.0"
+                                      spacing="10.0">
+                                    <children>
+                                        <VBox alignment="CENTER" VBox.vgrow="NEVER">
+                                            <children>
+                                                <Label text="Loan Amount"/>
+                                                <TextField fx:id="loanAmount"
+                                                           accessibleText="The total amount of the loan."
+                                                           alignment="CENTER" maxWidth="250.0" text="\$1000"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" layoutX="10.0" layoutY="156.0">
+                                            <children>
+                                                <Label text="Loan term in:"/>
+                                                <ChoiceBox fx:id="termChoiceBox" prefWidth="150.0"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" layoutX="10.0" layoutY="217.0">
+                                            <children>
+                                                <Label text="Terms"/>
+                                                <TextField fx:id="termCount" alignment="CENTER" maxWidth="250.0"
+                                                           text="1"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" layoutX="10.0" layoutY="243.0">
+                                            <children>
+                                                <Label text="Interest rate per year"/>
+                                                <TextField fx:id="interestRate" alignment="CENTER" maxWidth="250.0"
+                                                           prefHeight="25.0" prefWidth="206.0" text="5%"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" layoutX="10.0" layoutY="269.0">
+                                            <children>
+                                                <Label text="Loan start date"/>
+                                                <DatePicker fx:id="startDate"/>
+                                            </children>
+                                        </VBox>
+                                        <Button fx:id="calculateButton" mnemonicParsing="false"
+                                                onAction="#calculateButtonClicked" text="Calculate"/>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                    </padding>
+                                </VBox>
+                                <AnchorPane layoutX="155.0" prefHeight="564.0" prefWidth="745.0">
+                                    <children>
+                                        <PieChart fx:id="pieChart" animated="false" labelsVisible="false"
+                                                  layoutX="173.0" legendSide="RIGHT" prefHeight="249.0"
+                                                  prefWidth="400.0" titleSide="BOTTOM">
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                        </PieChart>
+                                        <TableView fx:id="loanTable" layoutY="249.0" minWidth="600.0" prefHeight="416.0"
+                                                   prefWidth="745.0">
+                                            <columns>
+                                                <TableColumn fx:id="dateCol" editable="false" maxWidth="150.0"
+                                                             minWidth="100.0" prefWidth="127.5" resizable="false"
+                                                             text="Date"/>
+                                                <TableColumn fx:id="paymentCol" editable="false" maxWidth="150.0"
+                                                             minWidth="70.0" prefWidth="98.0" resizable="false"
+                                                             text="Payment"/>
+                                                <TableColumn fx:id="principalCol" editable="false" maxWidth="150.0"
+                                                             minWidth="75.0" prefWidth="92.5" resizable="false"
+                                                             text="Principal"/>
+                                                <TableColumn fx:id="interestCol" editable="false" maxWidth="150.0"
+                                                             minWidth="64.0" prefWidth="82.5" resizable="false"
+                                                             text="Interest"/>
+                                                <TableColumn fx:id="totalInterestCol" editable="false" maxWidth="150.5"
+                                                             minWidth="100.0" prefWidth="150.5" resizable="false"
+                                                             text="Total Interest"/>
+                                                <TableColumn fx:id="balanceCol" editable="false" maxWidth="224.0"
+                                                             minWidth="100.0" prefWidth="173.5" resizable="false"
+                                                             text="Balance"/>
+                                            </columns>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                            </padding>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Retirement Savings">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <Accordion fx:id="mainAccordian" prefHeight="671.0" prefWidth="900.0"
+                                           expandedPane="$defaultPane">
+                                    <panes>
+                                        <TitledPane fx:id="defaultPane" animated="false" text="Retirement Calculator">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0">
+                                                    <children>
+                                                        <BarChart fx:id="barChart" animated="false" barGap="0.0"
+                                                                  categoryGap="2.0" layoutX="119.0" layoutY="433.0"
+                                                                  legendSide="RIGHT" prefHeight="150.0"
+                                                                  prefWidth="662.0" title="401(k) Balance by Year">
+                                                            <xAxis>
+                                                                <CategoryAxis side="BOTTOM"/>
+                                                            </xAxis>
+                                                            <yAxis>
+                                                                <NumberAxis side="LEFT"/>
+                                                            </yAxis>
+                                                        </BarChart>
+                                                        <GridPane fx:id="sliderFieldPane" hgap="10.0" prefHeight="433.0"
+                                                                  prefWidth="900.0">
+                                                            <columnConstraints>
+                                                                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES"
+                                                                                   maxWidth="100.0" minWidth="0.0"/>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0"
+                                                                                   minWidth="10.0" prefWidth="150.0"/>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="536.0"
+                                                                                   minWidth="10.0" prefWidth="150.0"/>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="487.0"
+                                                                                   minWidth="10.0" prefWidth="450.0"/>
+                                                            </columnConstraints>
+                                                            <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints maxHeight="39.0" minHeight="10.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints maxHeight="20.0" minHeight="10.0"
+                                                                                prefHeight="11.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                            </rowConstraints>
+                                                            <children>
+                                                                <Button fx:id="percentContributeButton"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="1"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Label text="Percent to Contribute:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                                                <TextField fx:id="percentContributeText" text="10%"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="1"/>
+                                                                <Slider fx:id="percentContributeSlider"
+                                                                        majorTickUnit="33.0" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        value="10.0" GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="1"/>
+                                                                <Button fx:id="salaryButton" layoutX="10.0"
+                                                                        layoutY="50.0" mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="2"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Label layoutX="230.0" layoutY="54.0"
+                                                                       text="Annual salary:" GridPane.columnIndex="1"
+                                                                       GridPane.rowIndex="2"/>
+                                                                <TextField fx:id="salaryText" layoutX="450.0"
+                                                                           layoutY="50.0" text="\$60,000"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="2"/>
+                                                                <Slider fx:id="salarySlider" blockIncrement="1000.0"
+                                                                        layoutX="669.0" layoutY="43.0"
+                                                                        majorTickUnit="100000.0" max="1000000.0"
+                                                                        minorTickCount="2" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        value="50000.0" GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="2"/>
+                                                                <Slider fx:id="salaryIncreaseSlider" majorTickUnit="4.0"
+                                                                        max="12.0" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        value="1.0" GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="3"/>
+                                                                <Slider fx:id="currentAgeSlider" max="90.0" min="15.0"
+                                                                        prefWidth="250.0" showTickLabels="true"
+                                                                        showTickMarks="true" value="30.0"
+                                                                        GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+                                                                <Slider fx:id="retirementAgeSlider" max="90.0"
+                                                                        min="15.0" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        value="65.0" GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="5"/>
+                                                                <Slider fx:id="balanceSlider" blockIncrement="1000.0"
+                                                                        majorTickUnit="100000.0" max="1000000.0"
+                                                                        minorTickCount="2" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                                                                <Slider fx:id="rateOfReturnSlider" majorTickUnit="4.0"
+                                                                        max="12.0" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        value="7.0" GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="7"/>
+                                                                <TextField fx:id="salaryIncreaseText" text="1%"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="3"/>
+                                                                <TextField fx:id="currentAgeText" text="15"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="4"/>
+                                                                <TextField fx:id="retirementAgeText" text="65"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="5"/>
+                                                                <TextField fx:id="balanceText" text="\$0"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="6"/>
+                                                                <TextField fx:id="rateOfReturnText" text="7%"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="7"/>
+                                                                <Label text="Annual salary increase:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                                                <Label text="Current age:" GridPane.columnIndex="1"
+                                                                       GridPane.rowIndex="4"/>
+                                                                <Label text="Age of retirement:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                                                <Label text="Current 401(k) balance:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                                                                <Label text="Annual rate of return:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                                                                <Button fx:id="salaryIncreaseButton"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="3"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Button fx:id="currentAgeButton" mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="4"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Button fx:id="retirementAgeButton"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="5"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Button fx:id="balanceButton" mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="6"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Button fx:id="rateOfReturnButton"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="7"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Empty TooltipGet More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Button fx:id="employerMatchButton"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="11"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Button fx:id="employerMatchEndsButton"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#tooltipButtonClicked" text="?"
+                                                                        GridPane.halignment="CENTER"
+                                                                        GridPane.rowIndex="12"
+                                                                        GridPane.valignment="CENTER">
+                                                                    <tooltip>
+                                                                        <Tooltip text="Get More Info."/>
+                                                                    </tooltip>
+                                                                </Button>
+                                                                <Label text="Employer Match:" GridPane.columnIndex="1"
+                                                                       GridPane.rowIndex="11"/>
+                                                                <Label text="Employer match ends:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+                                                                <TextField fx:id="employerMatchText" text="6%"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="11"/>
+                                                                <TextField fx:id="employerMatchEndsText" text="50%"
+                                                                           GridPane.columnIndex="2"
+                                                                           GridPane.rowIndex="12"/>
+                                                                <Slider fx:id="employerMatchSlider"
+                                                                        majorTickUnit="133.0" max="400.0"
+                                                                        prefWidth="250.0" showTickLabels="true"
+                                                                        showTickMarks="true" value="6.0"
+                                                                        GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="11"/>
+                                                                <Slider fx:id="employerMatchEndsSlider"
+                                                                        majorTickUnit="33.0" prefWidth="250.0"
+                                                                        showTickLabels="true" showTickMarks="true"
+                                                                        value="50.0" GridPane.columnIndex="3"
+                                                                        GridPane.rowIndex="12"/>
+                                                                <Label text="401(K) Employee Savings Plan:"
+                                                                       GridPane.columnSpan="2147483647">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="14.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Total employee contributions:"
+                                                                       textAlignment="CENTER" GridPane.columnIndex="1"
+                                                                       GridPane.rowIndex="8"/>
+                                                                <Label text="401(K) Employer Match:"
+                                                                       GridPane.columnSpan="2147483647"
+                                                                       GridPane.rowIndex="10">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="14.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Total employer contributions:"
+                                                                       GridPane.columnIndex="1" GridPane.rowIndex="13"/>
+                                                                <Separator prefHeight="3.0" prefWidth="874.0"
+                                                                           GridPane.columnSpan="4"
+                                                                           GridPane.rowIndex="9"/>
+                                                                <Label fx:id="employeeContributions" text="Label"
+                                                                       GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+                                                                <Label fx:id="employerContributions" text="Label"
+                                                                       GridPane.columnIndex="2" GridPane.rowIndex="13"/>
+                                                            </children>
+                                                            <padding>
+                                                                <Insets bottom="10.0" left="10.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </padding>
+                                                        </GridPane>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" text="Detailed Report">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0">
+                                                    <children>
+                                                        <TableView fx:id="savingsTable" layoutX="9.0" layoutY="195.0"
+                                                                   prefHeight="390.0" prefWidth="880.0">
+                                                            <columns>
+                                                                <TableColumn fx:id="ageCol" editable="false"
+                                                                             text="Year"/>
+                                                                <TableColumn fx:id="contribCol" editable="false"
+                                                                             prefWidth="200.0" text="Contributions"/>
+                                                                <TableColumn fx:id="employerMatchCol" editable="false"
+                                                                             prefWidth="200.0" text="Employer Match"/>
+                                                                <TableColumn fx:id="balWithoutMatchCol" editable="false"
+                                                                             prefWidth="200.0"
+                                                                             text="Balance Without Employer Match"/>
+                                                                <TableColumn fx:id="balWithMatchCol" editable="false"
+                                                                             minWidth="0.0" prefWidth="200.0"
+                                                                             text="Balance With Employer Match"/>
+                                                            </columns>
+                                                        </TableView>
+                                                        <BarChart fx:id="largeBarChart" animated="false" barGap="0.0"
+                                                                  categoryGap="2.0" legendSide="RIGHT"
+                                                                  prefHeight="194.0" prefWidth="900.0"
+                                                                  title="401(k) Balance by Year">
+                                                            <xAxis>
+                                                                <CategoryAxis side="BOTTOM"/>
+                                                            </xAxis>
+                                                            <yAxis>
+                                                                <NumberAxis side="LEFT"/>
+                                                            </yAxis>
+                                                            <padding>
+                                                                <Insets bottom="10.0" left="10.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </padding>
+                                                        </BarChart>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </TitledPane>
+                                        <TitledPane fx:id="definitionsPane" animated="false" text="Definitions">
+                                            <content>
+                                                <StackPane>
+                                                    <children>
+                                                        <WebView fx:id="webView" prefHeight="-1.0" prefWidth="-1.0"/>
+                                                    </children>
+                                                </StackPane>
+                                            </content>
+                                        </TitledPane>
+                                    </panes>
+                                </Accordion>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</StackPane>
