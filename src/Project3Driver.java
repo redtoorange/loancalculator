@@ -1,5 +1,7 @@
-import controller.ApplicationController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -15,6 +17,23 @@ public class Project3Driver extends Application {
 
     @Override
     public void start( Stage primaryStage ) throws Exception {
-        new ApplicationController( primaryStage );
+        try {
+            FXMLLoader loader = new FXMLLoader(  );
+
+            System.out.println( loader.getLocation() );
+
+            Parent root = loader.load(getClass().getResource( "/view/MainView.fxml" ));
+            Scene mainScene = new Scene( root );
+
+            primaryStage.setTitle( "Finance Informer 5000" );
+            primaryStage.setScene( mainScene );
+
+            primaryStage.show();
+            //new ApplicationController( primaryStage );
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println( e.getMessage() );
+        }
     }
 }

@@ -22,7 +22,9 @@ public class ApplicationController {
      */
     public ApplicationController( Stage mainStage ) throws Exception {
         //Load the FXML from the resources folder.
-        FXMLLoader loader = new FXMLLoader( ApplicationController.class.getResource( "../view/MainView.fxml" ) );
+        FXMLLoader loader = new FXMLLoader( getClass().getResource( "../view/MainView.fxml" ) );
+
+        System.out.println( loader.getLocation() );
 
         Parent root = loader.load();
         Scene mainScene = new Scene( root );

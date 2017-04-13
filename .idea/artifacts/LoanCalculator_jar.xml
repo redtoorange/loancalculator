@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="LoanCalculator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LoanCalculator_jar</output-path>
+    <root id="root">
+      <element id="archive" name="LoanCalculator.jar">
+        <element id="module-output" name="LoanCalculator" />
+      </element>
+      <element id="library" level="project" name="poi-3.15" />
+    </root>
+  </artifact>
+</component>

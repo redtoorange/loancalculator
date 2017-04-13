@@ -11,8 +11,8 @@ import javafx.scene.input.KeyEvent;
  * @version 29/Mar/2017
  */
 public class KeyHandler implements EventHandler< KeyEvent > {
-    private String regex;
-    private boolean allowDecimal;
+    private final String regex;
+    private final boolean allowDecimal;
 
 
     /**
